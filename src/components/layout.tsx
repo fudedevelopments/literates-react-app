@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, ShoppingCart } from 'lucide-react';
+import { Menu, X} from 'lucide-react';
 import { Link, Outlet } from 'react-router-dom';
 import logo from '../assets/logo.jpg'; // Import logo
 
