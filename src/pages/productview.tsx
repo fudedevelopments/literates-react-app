@@ -11,7 +11,7 @@ const ProductPage = () => {
     const { data: product, isLoading, isError, error } = useQuery({
         queryKey: ['product', id],
         queryFn: async () => {
-            const response = await axios.get(`http://127.0.0.1:8787/products/${id}`);
+            const response = await axios.get(`https://litratesweb.fudedevelopments.workers.dev/${id}`);
             console.log(response.data);
             
             return response.data;

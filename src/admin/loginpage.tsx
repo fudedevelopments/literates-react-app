@@ -15,7 +15,7 @@ const AdminLogin = () => {
     const loginMutation = useMutation({
         mutationFn: async () => {
             const response = await axios.post(
-                "http://127.0.0.1:8787/admin-login",
+                "https://litratesweb.fudedevelopments.workers.dev/admin-login",
                 { username, password },
                 { withCredentials: false } // No need for cookies since using JWT
             );

@@ -20,7 +20,7 @@ const ProductGrid = () => {
     const { data: titles} = useQuery<Title[]>({
         queryKey: ['titles'],
         queryFn: async () => {
-            const response = await axios.get("http://127.0.0.1:8787/getalltitle", {
+            const response = await axios.get("https://litratesweb.fudedevelopments.workers.dev/getalltitle", {
                 headers: { Authorization: `Bearer ${token}` }
             });
             return response.data.results;
@@ -78,7 +78,7 @@ const ProductRow = ({ title, productsPerPage }: { title: Title; productsPerPage:
         queryKey: ['products', title.id],
         queryFn: async ({ pageParam = 1 }) => {
             const response = await axios.get(
-                `http://127.0.0.1:8787/products/title/${encodeURIComponent(title.title)}`,
+                `https://litratesweb.fudedevelopments.workers.dev/products/title/${encodeURIComponent(title.title)}`,
                 {
                     params: { page: pageParam, limit: productsPerPage },
                     headers: { Authorization: `Bearer ${token}` }
