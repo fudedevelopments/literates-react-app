@@ -8,7 +8,6 @@ import axios from "axios";
 const ProductAddPage = () => {
     const navigate = useNavigate();
     const imageUUID = uuidv4();
-
     const [images, setImages] = useState<string[]>([]);
     const [name, setName] = useState<string>("");
     const [price, setPrice] = useState<number>();
@@ -20,7 +19,7 @@ const ProductAddPage = () => {
     const addProductMutation = useMutation({
         mutationFn: async (product: any) => {
             const response = await axios.post(
-                "https://litratesweb.fudedevelopments.workers.dev/add-products",
+                "https://workers.literatesartemporium.in/add-products",
                  product,
                 {
                     headers: {
