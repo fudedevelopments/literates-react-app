@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 interface Product {
     id: number;
@@ -8,16 +9,18 @@ interface Product {
     descriptions: string;
     price: number;
     offerprice: number;
-    images: string[];
+    images: string;
     bestseller: boolean;
 }
 
 const fetchBestSellers = async ({ pageParam = 1 }) => {
+    
     const response = await axios.get(`https://workers.literatesartemporium.in/product/best?page=${pageParam}`);
     return response.data;
 };
 
 export default function BestSellerProducts() {
+    const navigate = useNavigate();
     const {
         data,
         fetchNextPage,
@@ -42,9 +45,11 @@ export default function BestSellerProducts() {
             <h1 className="text-3xl font-bold text-center mb-6">Best Selling Products</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {data?.pages.map((page) =>
+                    
                     page.products.map((product: Product) => (
-                        <div key={product.id} className="border p-4 rounded-lg shadow-md relative flex flex-col items-center">
-                            <img src={product.images[0]} alt={product.title} className="w-full h-48 object-cover rounded-md" />
+                        
+                        <div key={product.id} onClick={()=>{navigate(`/productsview/${product.id}`)}} className="border p-4 rounded-lg shadow-md relative flex flex-col items-center">
+                            <img src={JSON.parse(product.images)[0]} alt={product.title} className="w-full h-48 object-cover rounded-md" />
                             {product.bestseller && (
                                 <motion.div
                                     className="absolute top-2 left-2 bg-yellow-500 text-white px-3 py-1 rounded-md text-sm font-bold shadow-lg"

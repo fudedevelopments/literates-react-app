@@ -14,7 +14,7 @@ const Allproducts: React.FC = () => {
         queryKey: ["products", currentPage],
         queryFn: async () => {
             const response = await axios.get(
-                `http://127.0.0.1:8787/product?page=${currentPage}&limit=${productsPerPage}`
+                `https://workers.literatesartemporium.in/product?page=${currentPage}&limit=${productsPerPage}`
             );
             return response.data;
         },
@@ -48,7 +48,7 @@ const Allproducts: React.FC = () => {
                             >
                                 <div
                                     className="aspect-square bg-gray-100 rounded-t-lg overflow-hidden cursor-pointer"
-                                    onClick={() => navigate(`/product/${product.id}`)}
+                                    onClick={() => navigate(`/productsview/${product.id}`)}
                                 >
                                     <img
                                         src={images[0]}
