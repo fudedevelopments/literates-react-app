@@ -198,8 +198,8 @@ const ProductTable: React.FC = () => {
                         <tr>
                             <th className="py-2 px-4 text-left">Image</th>
                             <th className="py-2 px-4 text-left">Name</th>
-                            <th className="py-2 px-4 text-left">Actual Price</th>
                             <th className="py-2 px-4 text-left">Offer Price</th>
+                            <th className="py-2 px-4 text-left">Actual Price</th>
                             <th className="py-2 px-4 text-left">Action</th>
                             <th className="py-2 px-4 text-left">Title</th>
                         </tr>
