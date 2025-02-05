@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import ShinyButton from '../smallcomponents/ShinyButton';
 import { Truck, ShieldCheck, Gift } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function HeroSection() {
+    const navigate = useNavigate()
     return (
         <section className="relative flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-white text-gray-900 px-6 lg:px-16 overflow-hidden">
             {/* Content Container */}
@@ -48,10 +50,12 @@ export default function HeroSection() {
                         }}
                     >
                         <ShinyButton
-                            text="Shop New Arrivals"
-                            onClick={() => { }}
+                            text="Shop Now"
+                            onClick={() => {navigate("/bestseller")}}
                         />
-                        <button className="px-8 py-3 rounded-lg border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors">
+                        <button
+                            onClick={() => { navigate("/allproducts") }}
+                            className="px-8 py-3 rounded-lg border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors">
                             Browse Collections
                         </button>
                     </motion.div>

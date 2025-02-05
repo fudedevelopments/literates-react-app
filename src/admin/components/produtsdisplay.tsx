@@ -4,11 +4,12 @@ import { FaTrash, FaSearch, FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Loadingsmall from "../../smallcomponents/loadingsmall";
 
 interface Title {
     id: number;
     title: string;
-    hometitle: string;  
+    hometitle: string;
 }
 
 const ProductTable: React.FC = () => {
@@ -31,7 +32,7 @@ const ProductTable: React.FC = () => {
 
     const fetchProductQuery = async ({ pageParam = 1 }) => {
        
-        const response = await axios.get(`https://litratesweb.fudedevelopments.workers.dev/products?page=${pageParam}&limit=10`);
+        const response = await axios.get(`https://workers.literatesartemporium.in/product?page=${pageParam}&limit=10`);
         if (!response) {
             throw new Error("Error fetching products");
         }
@@ -43,7 +44,7 @@ const ProductTable: React.FC = () => {
         mutationKey: ["updateproducttitle"],
         mutationFn: async ({ productId, title }: { productId: string, title: string }) => {
             const response = await axios.put(
-                `https://litratesweb.fudedevelopments.workers.dev/changetitle/${productId}`,
+                `https://workers.literatesartemporium.in/product/${productId}`,
                 {
                     hometitle: title
                 },
@@ -70,7 +71,7 @@ const ProductTable: React.FC = () => {
         queryKey: ['titles'],
         queryFn: async () => {
             const response = await axios.get(
-                "https://litratesweb.fudedevelopments.workers.dev/getalltitle",
+                "https://workers.literatesartemporium.in/title",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -120,12 +121,11 @@ const ProductTable: React.FC = () => {
     const deleteMutation = useMutation({
         mutationKey: ["deleteproduct"],
         mutationFn: async (productId: string) => {
-           const response = await axios.delete(`https://litratesweb.fudedevelopments.workers.dev/products/${productId}`,{
+            const response = await axios.delete(`https://workers.literatesartemporium.in/product/${productId}`,{
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
            });
-            console.log(response.data);
             
             return response.data;
         },
@@ -140,7 +140,7 @@ const ProductTable: React.FC = () => {
     };
 
     if (isLoading) {
-        return <div className="text-center">Loading products...</div>;
+        return <Loadingsmall/>
     }
 
     if (isError) {
@@ -209,7 +209,7 @@ const ProductTable: React.FC = () => {
                             <React.Fragment key={product.id}>
                                 <tr
                                     className="cursor-pointer bg-white shadow-md rounded-lg hover:shadow-lg transition-all duration-300"
-                                    onClick={() => navigate(`/product-view/${product.id}`)}
+                                    onClick={() => navigate(`/updatehook/${product.id}/${product.bestseller}`)}
                                 >
                                     {/* Table cells remain the same */}
                                     <td className="py-4 px-4">

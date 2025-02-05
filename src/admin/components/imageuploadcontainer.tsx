@@ -32,7 +32,7 @@ function ImageUploadContainer({ onImagesUpdate, maxUploads, uploadUrl }: ImageUp
                 headers: { "Content-Type": "application/octet-stream" },
             });
 
-            return { id: image.id, url: `https://images.tanzo.in/${response.data}`, upurl: `${uploadUrl}` };
+            return { id: image.id, url: `https://images.literatesartemporium.in/${response.data}`, upurl: `${uploadUrl}` };
         },
         onSuccess: (data) => {
             setImages((prevImages) =>

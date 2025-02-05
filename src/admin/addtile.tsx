@@ -19,7 +19,7 @@ const AddTitle: React.FC = () => {
         queryKey: ['titles'],
         queryFn: async () => {
             const response = await axios.get(
-                "https://litratesweb.fudedevelopments.workers.dev/getalltitle",
+                "https://workers.literatesartemporium.in/title",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -30,11 +30,10 @@ const AddTitle: React.FC = () => {
         },
     });
 
-    // Add title mutation
     const createtile = useMutation({
         mutationFn: async () => {
             const response = await axios.post(
-                "https://litratesweb.fudedevelopments.workers.dev/addtitle",
+                "https://workers.literatesartemporium.in/title",
                 { title: categoryName },
                 {
                     headers: {
@@ -43,7 +42,6 @@ const AddTitle: React.FC = () => {
                 }
             );
           
-            
             return response.data;
         },
         onSuccess: () => {
@@ -55,12 +53,12 @@ const AddTitle: React.FC = () => {
         }
     });
 
-    // Delete title mutation
+
     const deleteMutation = useMutation({
         mutationFn: async (id: number) => {
             
             await axios.delete(
-                `https://litratesweb.fudedevelopments.workers.dev/deletetitle/${id}`,
+                `https://workers.literatesartemporium.in/title/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -86,7 +84,6 @@ const AddTitle: React.FC = () => {
             <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-2xl font-semibold text-center text-gray-700 mb-6">Manage Titles</h2>
 
-                {/* Add Title Form */}
                 <form onSubmit={handleSubmit} className="mb-8">
                     <div className="mb-4">
                         <label className="block text-gray-600 text-sm font-medium mb-2" htmlFor="titleName">

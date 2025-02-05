@@ -10,19 +10,15 @@ interface Title {
 }
 
 const ProductGrid = () => {
-    const token = 'YOUR_AUTH_TOKEN';
+
     const titlesPerPage = 3;
     const productsPerPage = 8;
-
-    
 
     // Fetch all titles
     const { data: titles} = useQuery<Title[]>({
         queryKey: ['titles'],
         queryFn: async () => {
-            const response = await axios.get("https://litratesweb.fudedevelopments.workers.dev/getalltitle", {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            const response = await axios.get("https://workers.literatesartemporium.in/title");
             return response.data.results;
         }
     });
@@ -78,7 +74,7 @@ const ProductRow = ({ title, productsPerPage }: { title: Title; productsPerPage:
         queryKey: ['products', title.id],
         queryFn: async ({ pageParam = 1 }) => {
             const response = await axios.get(
-                `https://litratesweb.fudedevelopments.workers.dev/products/title/${encodeURIComponent(title.title)}`,
+                `https://workers.literatesartemporium.in/product/title/${encodeURIComponent(title.title)}`,
                 {
                     params: { page: pageParam, limit: productsPerPage },
                     headers: { Authorization: `Bearer ${token}` }
@@ -116,7 +112,7 @@ const ProductRow = ({ title, productsPerPage }: { title: Title; productsPerPage:
             exit={{ opacity: 0 }}
             className="space-y-4"
         >
-            <h2 className="text-xl font-bold">{title.title}</h2>
+            <h2 className="text-3xl font-bold text-center">{title.title}</h2>
             <div
                 ref={containerRef}
                 onScroll={handleScroll}
@@ -141,26 +137,20 @@ import { useNavigate } from "react-router-dom";
 const ProductCard = ({ product }: { product: any }) => {
     const navigate = useNavigate();
     const images = JSON.parse(product?.images || "[]");
-    const hasOffer = product.offerPrice && product.offerPrice < product.price;
 
     return (
         <div
             className="min-w-[200px] bg-white rounded-lg shadow-md p-4 transition-transform transform hover:scale-105 relative cursor-pointer"
             onClick={() => navigate(`/productsview/${product.id}`)}
         >
-            {hasOffer && (
-                <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                    {Math.round(((product.price - product.offerPrice) / product.price) * 100)}% OFF
-                </span>
-            )}
             <img
                 src={images[0]}
                 alt={product.title}
-                className="w-full h-40 object-cover rounded-md mb-4"
+                className="w-full h-40 object-cover  rounded-md mb-4"
             />
-            <h3 className="font-semibold truncate">{product.title}</h3>
+            <h3 className="font-semibold truncate ">{product.title}</h3>
             <div className="flex items-center space-x-2">
-                <p className="text-red-500 font-semibold">₹{product.offerPrice}</p>
+                <p className="text-black font-semibold">₹{product.offerprice}</p>
                 <p className="text-gray-400 line-through text-sm">₹{product.price}</p>
             </div>
         </div>

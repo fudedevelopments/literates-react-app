@@ -19,7 +19,7 @@ const ProductAddPage = () => {
     const addProductMutation = useMutation({
         mutationFn: async (product: any) => {
             const response = await axios.post(
-                "https://workers.literatesartemporium.in/add-products",
+                "https://workers.literatesartemporium.in/product",
                  product,
                 {
                     headers: {
@@ -39,8 +39,6 @@ const ProductAddPage = () => {
 
     const handleAddProduct = async () => {
         setErrorMessage(null);
-
-        // Validate required fields
         if (!name.trim()) {
             setErrorMessage("Product name is required");
             return;
@@ -81,11 +79,9 @@ const ProductAddPage = () => {
                 <h1 className="text-2xl font-bold text-gray-700 mb-6">Add Product</h1>
 
                 <ImageUploadContainer
-                    uploadUrl={`https://workers.tanzo.in/productimages/${imageUUID}`}
+                    uploadUrl={`https://workers.literatesartemporium.in/images/${imageUUID}`}
                     maxUploads={5}
-                    onImagesUpdate={handleimagesupload}
-                />
-
+                    onImagesUpdate={handleimagesupload}/>
                 <div className="mt-6 space-y-4">
                     <div>
                         <label className="block text-gray-700 font-medium mb-2">

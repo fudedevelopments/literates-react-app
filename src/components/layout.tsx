@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Instagram, Menu, X } from 'lucide-react';
 import { Link, Outlet } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 
 const FreeShippingBanner = () => (
+    
+
     <motion.div
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -16,14 +18,16 @@ const FreeShippingBanner = () => (
 );
 
 const Header = () => {
+
+
     const [menuOpen, setMenuOpen] = useState(false);
 
     const navLinks = [
-        { to: '/shop', text: 'Shop' },
-        { to: '/new', text: 'New & Bestsellers' },
+        { to: '/allproducts', text: 'Shop' },
+        { to: '/bestseller', text: 'New & Bestsellers' },
         { to: '/gifts', text: 'Gift Ideas' },
-        { to: '/about', text: 'About Us' },
-        { to: '/contact', text: 'Contact' },
+        { to: '/aboutus', text: 'About Us' },
+        { to: '/contactus', text: 'Contact' },
     ];
 
     return (
@@ -93,6 +97,7 @@ const Header = () => {
 };
 
 const Footer = () => {
+    
     return (
         <footer className="bg-slate-900 text-gray-400 mt-20">
             <div className="container mx-auto px-4 py-8">
@@ -100,7 +105,7 @@ const Footer = () => {
                     <div>
                         <h3 className="text-white font-bold mb-4">Customer Service</h3>
                         <ul className="space-y-2">
-                            <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
+                            <li><Link to="/contactus" className="hover:text-white">Contact Us</Link></li>
                             <li><Link to="/shipping" className="hover:text-white">Shipping Policy</Link></li>
                             <li><Link to="/returns" className="hover:text-white">Returns & Exchanges</Link></li>
                         </ul>
@@ -108,7 +113,7 @@ const Footer = () => {
                     <div>
                         <h3 className="text-white font-bold mb-4">Company</h3>
                         <ul className="space-y-2">
-                            <li><Link to="/about" className="hover:text-white">About Us</Link></li>
+                            <li><Link to="/aboutus" className="hover:text-white">About Us</Link></li>
                             <li><Link to="/careers" className="hover:text-white">Careers</Link></li>
                             <li><Link to="/blog" className="hover:text-white">Blog</Link></li>
                         </ul>
@@ -116,15 +121,23 @@ const Footer = () => {
                     <div>
                         <h3 className="text-white font-bold mb-4">Legal</h3>
                         <ul className="space-y-2">
-                            <li><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></li>
-                            <li><Link to="/terms" className="hover:text-white">Terms of Service</Link></li>
-                            <li><Link to="/cookies" className="hover:text-white">Cookie Settings</Link></li>
+                            <li><Link to="/privacypolicy" className="hover:text-white">Privacy Policy</Link></li>
                         </ul>
                     </div>
                     <div>
                         <h3 className="text-white font-bold mb-4">Follow Us</h3>
                         <div className="flex space-x-4">
-                            {/* Add social media icons here */}
+                            <div className="flex items-center gap-2">
+                                <a
+                                    href={`https://www.instagram.com/literates_art_emporium`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2"
+                                >
+                                    <Instagram size={30} color="Red" />
+                                    <h1 className='text-red-500'>@literates_art_emporium</h1>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
