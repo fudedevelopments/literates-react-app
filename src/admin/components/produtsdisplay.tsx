@@ -21,6 +21,7 @@ const ProductTable: React.FC = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const token = localStorage.getItem("token");
+console.log(selectedProduct);
 
     React.useEffect(() => {
         if (showConfirm) {
@@ -116,6 +117,16 @@ const ProductTable: React.FC = () => {
             fetchNextPage();
         }
     };
+    const deleteImageMutation = useMutation({
+        mutationKey: ["deleteImage"],
+        mutationFn: async (uploadedUrls: string[]) => {
+            await Promise.all(uploadedUrls.map(url => axios.delete(url)));
+            return uploadedUrls;
+        },
+        onError: (error) => {
+            console.error("Delete error:", error);
+        },
+    });
 
     // Delete mutation
     const deleteMutation = useMutation({
@@ -134,6 +145,7 @@ const ProductTable: React.FC = () => {
             setShowConfirm(false);
         },
     });
+
 
     const truncateText = (text: string, maxLength: number) => {
         return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
@@ -230,6 +242,7 @@ const ProductTable: React.FC = () => {
                                                 e.stopPropagation();
                                                 setSelectedProduct(product);
                                                 setShowConfirm(true);
+                                                
                                             }}
                                         >
                                             <FaTrash />
@@ -314,7 +327,10 @@ const ProductTable: React.FC = () => {
                             </button>
                             <button
                                 className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                                onClick={() => deleteMutation.mutate(selectedProduct.id)}
+                                onClick={() => {
+                                    deleteMutation.mutate(selectedProduct.id)
+                                    deleteImageMutation.mutate(JSON.parse(selectedProduct.images))
+                                 } }
                             >
                                 Delete
                             </button>
