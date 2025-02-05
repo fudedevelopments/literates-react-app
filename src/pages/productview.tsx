@@ -188,14 +188,14 @@ const ProductPage = () => {
                             <GiMaterialsScience className="text-blue-600 text-2xl" />
                         </div>
                         <h3 className="text-lg font-semibold mb-2">Premium Materials</h3>
-                        <p className="text-gray-600">Made with eco-friendly MDF and non-toxic finishes</p>
+                        <p className="text-gray-600">Made with eco-friendly Material</p>
                     </div>
                     <div className="text-center p-6">
                         <div className="bg-green-100 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4">
                             <FaShieldAlt className="text-green-600 text-2xl" />
                         </div>
                         <h3 className="text-lg font-semibold mb-2">Quality Guarantee</h3>
-                        <p className="text-gray-600">30-day return policy with 1-year craftsmanship warranty</p>
+                        
                     </div>
                     <div className="text-center p-6">
                         <div className="bg-yellow-100 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4">
