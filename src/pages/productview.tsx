@@ -5,6 +5,7 @@ import { FaWhatsapp, FaTruck, FaShieldAlt, FaStar, FaBoxOpen } from 'react-icons
 import { GiMaterialsScience } from 'react-icons/gi';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Loadingsmall from '../smallcomponents/loadingsmall';
 
 const ProductPage = () => {
     const { id } = useParams<{ id: string }>();
@@ -36,7 +37,7 @@ const ProductPage = () => {
     const images = JSON.parse(product?.images || "[]");
     const inStock = true; // Static stock status for demonstration
 
-    if (isLoading) return <div className="text-center py-8">Loading...</div>;
+    if (isLoading) return <Loadingsmall />;
     if (isError) return <div className="text-center py-8 text-red-500">Error: {error.message}</div>;
 
     return (
