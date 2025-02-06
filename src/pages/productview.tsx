@@ -1,7 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { FaWhatsapp, FaTruck, FaShieldAlt, FaStar, FaBoxOpen } from 'react-icons/fa';
+import {
+    FaWhatsapp, FaTruck, FaShieldAlt, FaStar
+    
+} from 'react-icons/fa';
 import { GiMaterialsScience } from 'react-icons/gi';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -127,24 +130,7 @@ const ProductPage = () => {
                         </div>
                     </div>
 
-                    {/* Product Specifications */}
-                    <div className="space-y-4">
-                        <h3 className="text-xl font-semibold">Product Details</h3>
-                        <div className="space-y-3">
-                            <div className="flex items-center gap-3">
-                                <GiMaterialsScience className="text-gray-500" />
-                                <span className="text-gray-600">
-                                    Material: Premium Material with Matte Finish
-                                </span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <FaBoxOpen className="text-gray-500" />
-                                <span className="text-gray-600">
-                                    Dimensions: Customizable sizes
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                   
 
                     {/* Description */}
                     <div className="space-y-4">

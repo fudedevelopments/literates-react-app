@@ -120,6 +120,8 @@ console.log(selectedProduct);
     const deleteImageMutation = useMutation({
         mutationKey: ["deleteImage"],
         mutationFn: async (uploadedUrls: string[]) => {
+            console.log("Deleting images:", uploadedUrls);
+            
             await Promise.all(uploadedUrls.map(url => axios.delete(url)));
             return uploadedUrls;
         },
